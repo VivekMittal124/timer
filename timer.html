@@ -1,0 +1,187 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            .container{
+                height:460px;
+                width:220px;
+                background-color:brown;
+            }
+            .c1{
+                height:180px;
+                width:160px;
+                background-color:grey;
+                top-margin:20px;
+            }
+            .c2{
+                height:160px;
+                width:140px;
+                background-color:white;
+                top-margin:40px;
+            }
+            #h1{
+                position:relative;
+                text-align:center;  
+                top:50px
+            }
+            </style>
+            </head>
+            <body>
+                <center><div class="container">
+               <div class="c1">
+               <div class="c2">
+            <h1 id="h1">0</h1>
+               </div>
+                </div>
+                <p><h1 id="session">Session 1</h1></p>
+                <hr style="background-color:silver;width:80%;border:1px solid">
+     <table>
+         <tr><td><b>session time</b></td><td><b>break time</b></td></tr>
+         <tr><td id="st" style="color:green">0</td><td id="bt" style="color:orange">0</td></tr>
+         <tr><td><button id="minus1" style="background-color:black;color:white">-</button>
+         <button id="plus1" style="background-color:black;color:white">+</button></td>
+         <td><button id="minus2" style="background-color:black;color:white">-</button>
+         <button id="plus2" style="background-color:black;color:white">+</button></td></tr></table>
+         <hr style="background-color:silver;width:80%;border:1px solid">
+        <p> <button id="start" style="background-color:black;color:white;padding:10px 10px;font-size:10px">Start</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <button id="break" style="background-color:black;color:white;padding:10px 10px;font-size:10px">Break</button></p>
+                </div>
+
+            </body>
+           <script>
+               
+                //setting session time and break time;
+
+  document.getElementById("minus1").addEventListener("click",function(){
+        var x=document.getElementById("st").textContent;
+  x=parseInt(x);
+      if(x>=1)
+      x--;
+      document.getElementById("st").textContent=x;
+  });
+  document.getElementById("plus1").addEventListener("click",function(){
+        var x=document.getElementById("st").textContent;
+  x=parseInt(x);
+      x++;
+      document.getElementById("st").textContent=x;
+  });
+  document.getElementById("minus2").addEventListener("click",function(){
+        var x=document.getElementById("bt").textContent;
+  x=parseInt(x);
+      if(x>=1)
+      x--;
+      document.getElementById("bt").textContent=x;
+  });
+  document.getElementById("plus2").addEventListener("click",function(){
+        var x=document.getElementById("bt").textContent;
+  x=parseInt(x);
+      x++;
+      document.getElementById("bt").textContent=x;
+  });
+  // click on start;
+    document.getElementById("start").addEventListener("click",function(){
+   document.getElementById("start").textContent="Pause";
+   var check;
+var min=document.getElementById("st").textContent;
+min=parseInt(min);
+  var sec=0;
+   check=setInterval(function(){
+       if(min==0&&sec==0){
+       clearInterval(check);}
+              if(min<10 && sec>=10){
+          document.getElementById("h1").textContent="0"+min+":"+sec;
+          if(sec==00)
+          {
+              min--;
+              sec=60;
+          }
+          sec--;}
+          else if(min>10&&sec<10){
+          document.getElementById("h1").textContent=min+":"+"0"+sec;
+          if(sec==00)
+          {
+              min--;
+              sec=60;
+          }
+          sec--;}
+          else if(min<10 && sec<10){
+          document.getElementById("h1").innerHTML="0"+min+":"+"0"+sec;
+          if(sec==00)
+          {
+              min--;
+              sec=60;
+          }
+          sec--;}
+          else{
+          document.getElementById("h1").textContent=min+":"+sec;
+          if(sec==00)
+          {
+              min--;
+              sec=60;
+          }
+          sec--;}
+   },1000);
+     document.getElementById("start").addEventListener("click",function(){
+       clearInterval(check);
+       document.getElementById("h1").textContent=min+":"+sec;
+   });
+  });
+
+  var check1;
+  document.getElementById("break").addEventListener("click",function(){
+  var n=document.getElementById("h1").textContent;
+  var min2=document.getElementById("bt").textContent;
+      min2=parseInt(min2);
+      var sec2=0;
+  if(n=="00:00")
+  {
+       document.getElementById("session").textContent="Break!";
+      document.getElementById("break").textContent="Reset";
+     check1=setInterval(function(){
+      if(min2<10 && sec2>=10){
+          document.getElementById("h1").textContent="0"+min2+":"+sec2;
+          if(sec2==00)
+          {
+              min2--;
+              sec2=60;
+          }
+          sec2--;}
+          else if(min2>10&&sec2<10){
+          document.getElementById("h1").textContent=min2+":"+"0"+sec2;
+          if(sec2==00)
+          {
+              min2--;
+              sec2=60;
+          }
+          sec2--;}
+          else if(min2<10 && sec2<10){
+          document.getElementById("h1").textContent="0"+min2+":"+"0"+sec2;
+          if(sec2==00)
+          {
+              min2--;
+              sec2=60;
+          }
+          sec2--;}
+          else{
+          document.getElementById("h1").textContent=min2+":"+sec2;
+          if(sec2==00)
+          {
+              min2--;
+              sec2=60;
+          }
+          sec2--;}},1000);
+  }
+  document.getElementById("break").addEventListener("click",function(){
+      clearInterval(check1);
+    document.getElementById("h1").textContent="0";
+    document.getElementById("st").textContent="0";
+    document.getElementById("bt").textContent="0";
+    });
+});
+                 </script>
+
+
+
+
+
+            </html>
